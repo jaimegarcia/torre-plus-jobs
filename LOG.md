@@ -45,6 +45,8 @@ Saving in Reducer to Improve UX
 Including Skeleton while fetching Result to improve UX
 Adding Tab Pagination
 Fixing Test Case
+Adding Opportunity Detail
+Adding Mentors
 
 
 

@@ -65,7 +65,7 @@ function Opportunity({ opportunity }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" variant="outlined" color="secondary">Apply</Button>
+        <Button size="small" variant="outlined" color="secondary">View Opportunity</Button>
       </CardActions>
     </Card>
   );

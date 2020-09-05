@@ -1,6 +1,6 @@
 
 
-const baseUrl='http://localhost:8080/services/opportunities';
+
 // Action Types
 export const GET_OPPORTUNITIES = 'GET_OPPORTUNITIES';
 export const GET_OPPORTUNITIES_SUCCESS = 'GET_OPPORTUNITIES_SUCCESS';
@@ -43,11 +43,8 @@ export const setGlobalPage = page => ({
 
 // combine actions in an async thunk
 export function fetchOpportunities(expression={}, page = 1) {
-  //const URL = `${allowCors}/${baseUrl}?description=${description}&location=${location}&full_time=${full_time ? 'on' : ''}&page=${page}`;
-  console.log("pagefectch",page)
+  const baseUrl='http://localhost:8080/services/opportunities';
   const URL = `${baseUrl}?size=50&offset=${page===1?0:(page-1)*50}`;
-  //const payload=expression;//{"and":[{"status":{"code":"open"}},{"skill/role":{"text":description,"experience":"potential-to-develop"}}]}
-  console.log("URL",URL,expression)
   return async dispatch => {
     dispatch(getOpportunities());
 
@@ -72,3 +69,4 @@ export function fetchOpportunities(expression={}, page = 1) {
     }
   }
 }
+

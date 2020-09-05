@@ -7,7 +7,8 @@ export const initialState = {
   hasErrors: false,
   current: [],
   globalPage: 0,
-  total:0
+  total:0,
+  selectedOportunity:{}
 };
 
 export default function opportunitiesReducer(state = initialState, action) {
