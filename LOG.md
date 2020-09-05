@@ -34,6 +34,17 @@ Adding API Endpoint to get Mentor rate
 Adjusting Microservice Mentors for getting the rate
 Connect Back and Front
 
+2020-09-05 14:00:00 
+Adding Oportunities Test
+Adding Oportunities Component
+Paging Results by 50 to Improving UX
+Saving in Reducer to Improve UX
+
+
+2020-09-05 15:00:00 
+Including Skeleton while fetching Result to improve UX
+Adding Tab Pagination
+Fixing Test Case
 
 
 

@@ -45,8 +45,8 @@ exports.postOpportunities = async (req, res) => {
 					compensations:x.compensations,
 					skills
 				}
-			});
-      return res.status(200).json({opportunities:opportunitiesData})
+      });
+      return res.status(200).json({opportunities:opportunitiesData,total:response.data.total})
 
     }else{
       throw response.data.error;

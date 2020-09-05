@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import ChipInput from 'material-ui-chip-input'
 import { setQuery} from "../../services/query/queryActions";
+import { clearOpportunities,setGlobalPage } from "../../services/opportunities/opportunitiesActions";
 
 export const generateFullExpresion=(...expressions)=>{
   let fullExpression={"and":[]};
@@ -42,7 +43,9 @@ function Search({ dispatch }) {
   const setFullExpression=(...expressions)=>{
 
     const fullExpression=generateFullExpresion(...expressions);
+    dispatch(clearOpportunities());
     dispatch(setQuery("expression", fullExpression));
+    dispatch(setGlobalPage(1));
 
   }
   const handleSkillsChange=(chips)=>{

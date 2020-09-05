@@ -1,0 +1,74 @@
+
+
+const baseUrl='http://localhost:8080/services/opportunities';
+// Action Types
+export const GET_OPPORTUNITIES = 'GET_OPPORTUNITIES';
+export const GET_OPPORTUNITIES_SUCCESS = 'GET_OPPORTUNITIES_SUCCESS';
+export const GET_OPPORTUNITIES_FAILURE = 'GET_OPPORTUNITIES_FAILURE';
+export const GET_CURRENT_OPPORTUNITIES = 'GET_CURRENT_OPPORTUNITIES';
+export const SET_GLOBAL_PAGE = 'SET_GLOBAL_PAGE';
+export const CLEAR_OPPORTUNITIES = 'CLEAR_OPPORTUNITIES';
+
+// Create redux action creators that return an action
+export const getOpportunities = () => ({
+  type: GET_OPPORTUNITIES,
+});
+
+export const getOpportunitiesSuccess = jobs => ({
+  type: GET_OPPORTUNITIES_SUCCESS,
+  payload: jobs,
+});
+
+export const getOpportunitiesFailure = () => ({
+  type: GET_OPPORTUNITIES_FAILURE,
+});
+
+export const getCurrentOpportunities = (start = 0, end = 10, globalPage = 1) => ({
+  type: GET_CURRENT_OPPORTUNITIES,
+  payload: {
+    start,
+    end,
+    globalPage
+  },
+});
+
+export const clearOpportunities = () => ({
+  type: CLEAR_OPPORTUNITIES,
+});
+
+export const setGlobalPage = page => ({
+  type: SET_GLOBAL_PAGE,
+  payload: page,
+});
+
+// combine actions in an async thunk
+export function fetchOpportunities(expression={}, page = 1) {
+  //const URL = `${allowCors}/${baseUrl}?description=${description}&location=${location}&full_time=${full_time ? 'on' : ''}&page=${page}`;
+  console.log("pagefectch",page)
+  const URL = `${baseUrl}?size=50&offset=${page===1?0:(page-1)*50}`;
+  //const payload=expression;//{"and":[{"status":{"code":"open"}},{"skill/role":{"text":description,"experience":"potential-to-develop"}}]}
+  console.log("URL",URL,expression)
+  return async dispatch => {
+    dispatch(getOpportunities());
+
+    try {
+      const res = await fetch(URL, {
+        method: 'POST',
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+          'Accept':'*/*',
+          'Accept-Encoding':'gzip,deflate,br'
+        },
+        body:JSON.stringify({query:expression})
+      });
+
+      let data = await res.json();
+      let opportunities=data.opportunities;
+      dispatch(getOpportunitiesSuccess({opportunities,total:data.total}));
+    } catch (error) {
+      console.error(error);
+      dispatch(getOpportunitiesFailure());
+    }
+  }
+}
