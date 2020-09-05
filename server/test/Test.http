@@ -1,0 +1,50 @@
+
+@host =localhost
+@username = jaimeandresgarciamejia
+@contentType = application/json
+@jobid = KWNaMorO
+@offset=0
+@size=10
+@aggregate=true
+### Person Details
+GET https://torre.bio/api/bios/{{username}}
+
+
+### People List
+POST https://search.torre.co/people/_search/?offset={{offset}}&size={{size}}&aggregate={{aggregate}}
+Content-Type: {{contentType}}
+
+{
+	"skill/role": {
+		"text": "React",
+		"experience": "1-plus-year"
+	}
+}
+
+### Oportunity Details
+GET https://torre.co/api/opportunities/{{jobid}}
+Content-Type: {{contentType}}
+
+
+
+### Opportunities List
+POST https://search.torre.co/opportunities/_search/?offset={{offset}}&size={{size}}&aggregate={{aggregate}}
+Content-Type: {{contentType}}
+
+{
+	"and": [{
+		"or": [{
+			"skill/role": {
+				"text": "React",
+				"experience": "potential-to-develop"
+			}
+		}]
+	}, {
+		"or": [{
+			"organization": {
+				"term": "Stripe"
+			}
+		}]
+	}]
+}
+
