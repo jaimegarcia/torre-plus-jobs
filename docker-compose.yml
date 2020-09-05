@@ -1,20 +1,40 @@
-version: '3'
+version: '3.7'
+networks:
+  torre_net:
 services:
-  torre_plus_mongodb:
-    image: mongo:3.6
+  torre_plus_web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    networks:
+      - torre_net
+    volumes:
+      - ./web:/web
+      - /web/node_modules
   torre_plus_server:
     build:
       context: ./server
       dockerfile: Dockerfile
     ports:
      - "8080:8080"
-    environment:
-     - MONGODB_URI=mongodb://torre_plus_mongodb:27017/test 
-    links:
-     - torre_plus_mongodb 
-    depends_on: 
-     - torre_plus_mongodb 
+    networks:
+    - torre_net
     volumes:
      - ./server:/server
      - /server/node_modules
+  nginx:
+    container_name: nginx
+    image: nginx:1.16-alpine
+    restart: unless-stopped
+    ports:
+      - '80:80'
+    networks:
+      - torre_net
+    depends_on:
+      - torre_plus_server
+      - torre_plus_web
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
      
