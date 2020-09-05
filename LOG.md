@@ -20,7 +20,12 @@ Adding Opportunities MicroService
 Reseaching React Projects associated with JobBoards - Find Github-Jobs
 
 2020-09-05 12:00:00 
-
+Lunching
+Adding General Layout in Front
+Adding Redux
+Addix Query Reducer and Action
+Adding Dark Mode
+Adding Search Filters
 
 
 
