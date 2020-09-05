@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Grid } from '@material-ui/core';
-
+import Carousel from "react-material-ui-carousel"
+import Slider from "react-slick"
 import Mentor from "./Mentor";
 import {
   getCurrentMentors,
@@ -32,15 +33,14 @@ function Mentors({ dispatch,loading, mentors,searching}) {
 
   return (
 
-      <Grid container spacing={5}>
-   <Grid container item xs={12} spacing={5}>
-      {loading
-        ? new Array(20)
-            .fill(null)
-            .map((mentor, idx) =>  <Mentor mentor={mentor} key={idx} />)
-        : mentors.map((mentor) =>  <Mentor mentor={mentor} key={mentor.id} />)}
-</Grid>
-</Grid>
+    <React.Fragment>
+    {mentors.length>0 &&  
+      <Carousel
+        autoPlay={false}
+      >
+        {mentors.map((mentor) =>  <Mentor mentor={mentor} key={mentor.id} />)}
+    </Carousel>}
+</React.Fragment>
   );
 }
 //<Mentor mentor={mentor} key={idx}

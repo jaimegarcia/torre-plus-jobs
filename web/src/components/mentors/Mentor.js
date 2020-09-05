@@ -46,15 +46,13 @@ function Mentor({ dispatch,mentor }) {
   //console.log("individualmentor",mentor,date)
   //      to={mentor ? `/positions/${mentor.id}` : "#"}
   return (
-
+  
 
     <Card className={classes.root} variant="outlined">
-       {mentor ? <CardMedia
-        className={classes.media}
-        image={mentor.picture?mentor.picture:"https://www.ohioattorneygeneral.gov/getattachment/a251ac9a-eb9f-4741-a9eb-e2f87a2446b8/Duckworth.aspx"}
-        title={mentor.name}
-      />:<CustomSkeleton width={300} height={300}/>}
+
       <CardContent>
+        {mentor ?<img src={mentor.picture?mentor.picture:"https://www.ohioattorneygeneral.gov/getattachment/a251ac9a-eb9f-4741-a9eb-e2f87a2446b8/Duckworth.aspx"}></img>
+        :<CustomSkeleton width={300} height={300}/>}
         <Typography variant="h5" component="h2">
           {mentor ? mentor.name : <CustomSkeleton width={300} />}
         </Typography>
