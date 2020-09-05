@@ -98,6 +98,7 @@ exports.getMentor= async (req, res) => {
     if(response.data.person){
 
 			const results=response.data.person;
+			delete results["flags"]
       return res.status(200).json({mentor:results})
 
     }else{
