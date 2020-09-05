@@ -49,6 +49,10 @@ Adding Opportunity Detail
 Adding Mentors
 
 
-
+2020-09-05 16:00:00 
+Connecting Mentor with Payment
+Adding Oportunity Detail
+Customization of the FrontEnd
+Adjusting data in the backend
 
 
