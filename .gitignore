@@ -32,3 +32,4 @@ public/css/main.css
 
 # API keys and secrets
 .env
+server/.nyc_output

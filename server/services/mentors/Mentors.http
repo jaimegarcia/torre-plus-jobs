@@ -1,0 +1,7 @@
+
+@host =localhost:8080
+@contentType = application/json
+
+### List Available Mentors
+POST http://{{host}}/services/mentors?offset=0&size=20
+Content-Type: {{contentType}}

@@ -1,0 +1,9 @@
+
+@host =localhost:8080
+@contentType = application/json
+
+### Stripe Client Secret
+POST http://{{host}}/services/payments/create-payment-intent
+Content-Type: {{contentType}}
+
+{"items": [{ "id": "xl-tshirt" }]}

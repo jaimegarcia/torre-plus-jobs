@@ -21,6 +21,7 @@ const sass = require('node-sass-middleware');
 const multer = require('multer');
 
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
+const services = require('./services');
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
@@ -156,6 +157,8 @@ app.get('/auth/google/callback', passport.authenticate('google', { failureRedire
   res.redirect(req.session.returnTo || '/');
 });
 
+app.use('/services/payments', services.paymentsRouter);
+app.use('/services/mentors', services.mentorsRouter);
 /**
  * Error Handler.
  */
