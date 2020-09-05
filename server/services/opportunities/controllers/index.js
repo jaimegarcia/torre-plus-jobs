@@ -1,6 +1,6 @@
 
 const opportunities = require('./opportunities');
-
 module.exports = {
-  postOpportunities: opportunities.postOpportunities
+  postOpportunities: opportunities.postOpportunities,
+  getOpportunity: opportunities.getOpportunity
 };

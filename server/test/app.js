@@ -29,7 +29,19 @@ describe('Mentors MicroService', () => {
         done(); 
       });
   });
+  it('should return mentor detail', (done) => {
+    request(app)
+      .get('/services/mentors/jaimeandresgarciamejia')
+      .end(function(err, res) {   
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.all.keys('mentor');
+        expect(res.body.mentor).to.have.property('id');
+        expect(res.body.mentor).to.have.property('name');
+        done(); 
+      });
+  });
 });
+
 
 
 const opportunitiesQuery={
@@ -63,4 +75,17 @@ describe('Opportunities MicroService', () => {
         done(); 
       });
   });
+
+  it('should return opportunity detail', (done) => {
+    request(app)
+      .get('/services/opportunities/KWNaMorO')
+      .end(function(err, res) {   
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.all.keys('opportunity');
+        expect(res.body.opportunity).to.have.property('id');
+        expect(res.body.opportunity).to.have.property('details');
+        done(); 
+      });
+  });
 });
+

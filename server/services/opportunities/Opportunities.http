@@ -2,7 +2,9 @@
 @host =localhost:8080
 @contentType = application/json
 
-### List Available Mentors
+@opportunityId=KWNaMorO
+
+### List Available Oportunities
 POST http://{{host}}/services/opportunities?offset=0&size=20
 Content-Type: {{contentType}}
 
@@ -24,3 +26,7 @@ Content-Type: {{contentType}}
     }]
   }
 }
+
+### Get Oportunity Detail
+GET http://{{host}}/services/opportunities/{{opportunityId}}
+Content-Type: {{contentType}}

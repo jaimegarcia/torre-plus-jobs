@@ -1,7 +1,11 @@
 
 @host =localhost:8080
 @contentType = application/json
-
+@username = jaimeandresgarciamejia
 ### List Available Mentors
 POST http://{{host}}/services/mentors?offset=0&size=20
+Content-Type: {{contentType}}
+
+### Get Mentor Detail
+GET http://{{host}}/services/mentors/{{username}}
 Content-Type: {{contentType}}
