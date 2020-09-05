@@ -30,3 +30,37 @@ describe('Mentors MicroService', () => {
       });
   });
 });
+
+
+const opportunitiesQuery={
+  "query":{
+    "and": [{
+      "or": [{
+        "skill/role": {
+          "text": "React",
+          "experience": "potential-to-develop"
+        }
+      }]
+    }, {
+      "or": [{
+        "organization": {
+          "term": "Stripe"
+        }
+      }]
+    }]
+  }
+}
+
+describe('Opportunities MicroService', () => {
+  it('should return list of opportunities', (done) => {
+    request(app)
+      .post('/services/opportunities?offset=0&size=20')
+      .send(opportunitiesQuery)
+      .end(function(err, res) {   
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.all.keys('opportunities');
+        expect(res.body.opportunities[0]).to.have.all.keys('id','objective','type','organizations','locations','remote','deadline','status','skills');
+        done(); 
+      });
+  });
+});

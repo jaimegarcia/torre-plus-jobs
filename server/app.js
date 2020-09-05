@@ -159,6 +159,8 @@ app.get('/auth/google/callback', passport.authenticate('google', { failureRedire
 
 app.use('/services/payments', services.paymentsRouter);
 app.use('/services/mentors', services.mentorsRouter);
+app.use('/services/opportunities', services.opportunitiesRouter);
+
 /**
  * Error Handler.
  */

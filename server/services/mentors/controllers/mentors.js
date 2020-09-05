@@ -5,7 +5,7 @@ const httpsAgent = new https.Agent();
 
 const axios = Axios.create({ httpsAgent,timeout:10000 });
 
-const peopleEndPoint="https://search.torre.co/people/_search/?";
+const endpoint="https://search.torre.co/people/_search/?";
 
 const YEARLY_TO_HOURLY=40*52;
 const MONTHLY_TO_HOURLY=40;
@@ -38,12 +38,11 @@ const mentorsQuery={
  * @param  {} res
  */
 exports.postMentors = async (req, res) => {
-  console.log("postmentors",req.query)
   const {offset,size} = req.query;
   const aggregate=true;
   try{
     const response=await axios.post(
-      peopleEndPoint + `offset=${offset}&size=${size}&aggregate=${aggregate}`, 
+      endpoint + `offset=${offset}&size=${size}&aggregate=${aggregate}`, 
       mentorsQuery,
       {headers: {'Content-Type': 'application/json'}},
     )
@@ -52,7 +51,6 @@ exports.postMentors = async (req, res) => {
 			const results=response.data.results.filter(x=>x.compensations.freelancer);
 
 			const mentorsData=results.map(x=>{
-				console.log("x.compensations.freelancer",x.compensations.freelancer)
 				let compesationAmount=x.compensations.freelancer.amount;
 				if(x.compensations.freelancer.periodicity==="monthly") compesationAmount=compesationAmount/MONTHLY_TO_HOURLY;
 				if(x.compensations.freelancer.periodicity==="yearly") compesationAmount=compesationAmount/YEARLY_TO_HOURLY;

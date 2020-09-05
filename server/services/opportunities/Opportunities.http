@@ -1,0 +1,26 @@
+
+@host =localhost:8080
+@contentType = application/json
+
+### List Available Mentors
+POST http://{{host}}/services/opportunities?offset=0&size=20
+Content-Type: {{contentType}}
+
+{
+  "query":{
+    "and": [{
+      "or": [{
+        "skill/role": {
+          "text": "React",
+          "experience": "potential-to-develop"
+        }
+      }]
+    }, {
+      "or": [{
+        "organization": {
+          "term": "Stripe"
+        }
+      }]
+    }]
+  }
+}
