@@ -4,6 +4,7 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import { Button,Card,CardActions,CardContent,CardMedia,Typography,makeStyles } from '@material-ui/core';
 import CustomSkeleton from "../utils/CustomSkeleton";
+import {selectMentor} from "../../services/mentors/mentorsActions"
 
 const useStyles = makeStyles({
   root: {
@@ -31,8 +32,12 @@ const useStyles = makeStyles({
   }
 });
 
-function Opportunity({ mentor }) {
+function Mentor({ dispatch,mentor }) {
 
+  const handleSelectMentor = () => {
+    console.log("selectedmentor",mentor)
+    dispatch(selectMentor(mentor.username));
+  };
   const classes = useStyles();
   console.log("mentor",mentor)
   
@@ -46,7 +51,7 @@ function Opportunity({ mentor }) {
     <Card className={classes.root} variant="outlined">
        {mentor ? <CardMedia
         className={classes.media}
-        image={mentor.picture}
+        image={mentor.picture?mentor.picture:"https://www.ohioattorneygeneral.gov/getattachment/a251ac9a-eb9f-4741-a9eb-e2f87a2446b8/Duckworth.aspx"}
         title={mentor.name}
       />:<CustomSkeleton width={300} height={300}/>}
       <CardContent>
@@ -61,7 +66,7 @@ function Opportunity({ mentor }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" variant="outlined" color="secondary">View Opportunity</Button>
+        <Button size="small" variant="outlined" color="secondary" onClick={(mentor) => handleSelectMentor()} >Select Mentor</Button>
       </CardActions>
     </Card>
   );
@@ -71,4 +76,4 @@ const mapStateToProps = (state) => ({
 
 });
 
-export default connect(mapStateToProps)(Opportunity);
+export default connect(mapStateToProps)(Mentor);

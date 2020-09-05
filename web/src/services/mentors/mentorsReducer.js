@@ -8,7 +8,7 @@ export const initialState = {
   current: [],
   globalPage: 0,
   total:0,
-  selectedMentor:{}
+  selectedMentor:null
 };
 
 export default function mentorsReducer(state = initialState, action) {
@@ -36,6 +36,10 @@ export default function mentorsReducer(state = initialState, action) {
       };
     case actions.SET_GLOBAL_PAGE:
       return { ...state, globalPage: action.payload };
+    case actions.SELECT_MENTOR:
+      return { ...state, selectedMentor: action.payload };
+      case actions.CLEAR_SELECTED_MENTOR:
+        return { ...state, selectedMentor: null };
     case actions.CLEAR_MENTORS:
       return { ...state, mentors: [], globalPage: 1 };
     default:

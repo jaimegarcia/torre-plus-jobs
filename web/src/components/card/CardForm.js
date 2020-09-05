@@ -4,7 +4,7 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
-export default function CheckoutForm() {
+export default function CheckoutForm(selectedMentor) {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState('');
@@ -14,13 +14,14 @@ export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
   useEffect(() => {
+    console.log("cardSelectedMentor",selectedMentor)
     // Create PaymentIntent as soon as the page loads
     fetch("http://localhost:8080/services/payments/create-payment-intent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({"mentor":  "angie55"})
+        body: JSON.stringify(selectedMentor)
       })
       .then(res => {
         return res.json();

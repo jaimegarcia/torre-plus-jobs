@@ -67,7 +67,7 @@ exports.postMentors = async (req, res) => {
 					compensation:{
 						currency: x.compensations.freelancer.currency.slice(0,3),
 						symbol:x.compensations.freelancer.currency.slice(3,4),
-						amount:compesationAmount
+						amount:Math.round(compesationAmount*100)/100
 					}
 				}
 			});
@@ -117,7 +117,7 @@ exports.getMentor= async (req, res) => {
 			if(periodicity==="monthly") amount=amount/MONTHLY_TO_HOURLY;
 			if(periodicity==="yearly") amount=amount/YEARLY_TO_HOURLY;
 			results.compensation= {
-				amount,
+				amount:Math.round(amount*100)/100,
 				currency:currencySymbol.slice(0,3),
 				symbol:currencySymbol.slice(3,4),
 			}

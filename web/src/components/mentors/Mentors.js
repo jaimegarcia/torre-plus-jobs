@@ -16,9 +16,15 @@ function Mentors({ dispatch,loading, mentors,searching}) {
   console.log("mentors",mentors)
 
 
-  useEffect(async() => {
-    await dispatch(fetchMentors());
-    dispatch( getCurrentMentors(0,20,1));
+  useEffect(() => {
+    async function fetchData() {
+      // You can await here
+      await dispatch(fetchMentors());
+      dispatch( getCurrentMentors(0,20,1));
+      // ...
+    }
+    fetchData();
+
 
 
   }, []);

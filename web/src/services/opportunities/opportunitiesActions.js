@@ -14,9 +14,9 @@ export const getOpportunities = () => ({
   type: GET_OPPORTUNITIES,
 });
 
-export const getOpportunitiesSuccess = jobs => ({
+export const getOpportunitiesSuccess = opportunities => ({
   type: GET_OPPORTUNITIES_SUCCESS,
-  payload: jobs,
+  payload: opportunities,
 });
 
 export const getOpportunitiesFailure = () => ({

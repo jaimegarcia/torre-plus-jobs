@@ -8,15 +8,16 @@ export const GET_MENTORS_FAILURE = 'GET_MENTORS_FAILURE';
 export const GET_CURRENT_MENTORS = 'GET_CURRENT_MENTORS';
 export const SET_GLOBAL_PAGE = 'SET_GLOBAL_PAGE';
 export const CLEAR_MENTORS = 'CLEAR_MENTORS';
-
+export const SELECT_MENTOR = 'SELECT_MENTOR';
+export const CLEAR_SELECTED_MENTOR = 'CLEAR_SELECTED_MENTOR';
 // Create redux action creators that return an action
 export const getMentors = () => ({
   type: GET_MENTORS,
 });
 
-export const getMentorsSuccess = jobs => ({
+export const getMentorsSuccess = mentors => ({
   type: GET_MENTORS_SUCCESS,
-  payload: jobs,
+  payload: mentors,
 });
 
 export const getMentorsFailure = () => ({
@@ -35,12 +36,18 @@ export const getCurrentMentors = (start = 0, end = 10, globalPage = 1) => ({
 export const clearMentors = () => ({
   type: CLEAR_MENTORS,
 });
+export const clearSelectedMentor = () => ({
+  type: CLEAR_SELECTED_MENTOR,
+});
 
 export const setGlobalPage = page => ({
   type: SET_GLOBAL_PAGE,
   payload: page,
 });
-
+export const selectMentor = mentor => ({
+  type: SELECT_MENTOR,
+  payload: mentor,
+});
 // combine actions in an async thunk
 export function fetchMentors() {
   const baseUrl='http://localhost:8080/services/mentors';
