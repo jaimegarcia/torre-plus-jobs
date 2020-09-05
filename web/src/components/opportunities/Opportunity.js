@@ -33,7 +33,6 @@ function Opportunity({ opportunity }) {
   let date = opportunity && +new Date(opportunity.deadline);
   console.log("oportunity",opportunity)
   
-  let compensation=opportunity && opportunity.compensation && opportunity.compensation.data && `${opportunity.compensation.data.currency} ${opportunity.compensation.data.minAmount} ${opportunity.compensation.data.maxAmount?" - "+opportunity.compensation.data.maxAmount:""} /${opportunity.compensation.data.periodicity}`
 
   //console.log("individualopportunity",opportunity,date)
   //      to={opportunity ? `/positions/${opportunity.id}` : "#"}
@@ -46,7 +45,7 @@ function Opportunity({ opportunity }) {
           {opportunity ? opportunity.objective : <CustomSkeleton width={300} />}
         </Typography>
         <Typography className={classes.pos} color="textSecondary" component="div" >
-          {opportunity? opportunity.organizations? opportunity.organizations:"": (<CustomSkeleton width={90} />)}
+          {opportunity?  opportunity.organizations: (<CustomSkeleton width={90} />)}
         </Typography>
         <Typography className={classes.title} color="textSecondary" gutterBottom component="div">
           {opportunity? date ?  ("Ends "+moment(date).startOf("hour").fromNow()) :"": (<CustomSkeleton width={90} />)}
@@ -55,7 +54,7 @@ function Opportunity({ opportunity }) {
           {opportunity? opportunity.skills.length? opportunity.skills.map(x=>(<Chip key={x} className={classes.chipSkill} label={`${x}`} variant="outlined" />)): "": (<CustomSkeleton width={90} />)}
         </Typography>
         <Typography variant="body2" component="div">
-          {opportunity? compensation? compensation:"": (<CustomSkeleton width={90} />)}
+          {opportunity? `Compensation: ${opportunity.compensation}`: (<CustomSkeleton width={90} />)}
         </Typography>
         <Typography variant="body2" component="div">
           {opportunity ? opportunity.type : <CustomSkeleton width={300} />}

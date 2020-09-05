@@ -6,6 +6,10 @@ const httpsAgent = new https.Agent();
 const axios = Axios.create({ httpsAgent,timeout:10000 });
 
 
+const formatPrice = (x) => {
+  return x.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,').replace(".00","");
+
+};
 
 /**
  * Get Mentors from Torre API
@@ -32,6 +36,11 @@ exports.postOpportunities = async (req, res) => {
 			const opportunitiesData=results.map((x)=>{
 				const skills=x.skills.map((skill)=>`${skill.name} ${skill.experience.replace("potential-to-develop","0+").replace(/-plus-year(s\b|\b)/,"+")}`);
 
+        console.log("x.compensation",x.compensation)
+      
+        let compensation=x.compensation && x.compensation.data && x.compensation.data.minAmount>0 &&
+        `${x.compensation.data.currency} ${formatPrice(x.compensation.data.minAmount)} ${x.compensation.data.maxAmount?" - "+formatPrice(x.compensation.data.maxAmount):""} /${x.compensation.data.periodicity}`
+        compensation=compensation || "To Be Defined";
 				return {
 					id:x.id,
 					objective:x.objective,
@@ -42,7 +51,7 @@ exports.postOpportunities = async (req, res) => {
 					weight: x.weight,
 					deadline:x.deadline,
 					status:x.status,
-					compensations:x.compensations,
+					compensation,
 					skills
 				}
       });
@@ -79,7 +88,14 @@ exports.getOpportunity = async (req, res) => {
 			const results=response.data;
       delete results["attachments"];
       delete results["owner"];
-      return res.status(200).json({opportunity:results})
+      const skills=results.strengths.map((skill)=>`${skill.name} ${skill.experience.replace("potential-to-develop","0+").replace(/-plus-year(s\b|\b)/,"+")}`);
+      results.skills=skills;
+      delete results["strengths"];
+      console.log("results.compensation",results.compensation)
+      results.compensation=results.compensation && results.compensation.minAmount>0 &&
+      `${results.compensation.currency} ${formatPrice(results.compensation.minAmount)} ${results.compensation.maxAmount?" - "+formatPrice(results.compensation.maxAmount):""} /${results.compensation.periodicity}`
+      results.compensation=results.compensation || "To Be Defined";
+      return res.status(200).json({opportunity:results}) //TODO: Improve comparison
 
     }else{
       throw response.data.error;

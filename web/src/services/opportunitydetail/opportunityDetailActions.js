@@ -35,7 +35,7 @@ export function fetchOpportunity(id) {
       });
       const data = await res.json();
       console.log("data",data.opportunity)
-      dispatch(getOpportunitySuccess(data));
+      dispatch(getOpportunitySuccess(data.opportunity));
     } catch (error) {
       console.error(error);
       dispatch(getOpportunityFailure());
