@@ -1,0 +1,20 @@
+version: '3'
+services:
+  torre_plus_mongodb:
+    image: mongo:3.6
+  torre_plus_server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+     - "8080:8080"
+    environment:
+     - MONGODB_URI=mongodb://torre_plus_mongodb:27017/test 
+    links:
+     - torre_plus_mongodb 
+    depends_on: 
+     - torre_plus_mongodb 
+    volumes:
+     - ./server:/server
+     - /server/node_modules
+     
