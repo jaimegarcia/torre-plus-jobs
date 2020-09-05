@@ -25,19 +25,14 @@ Adding General Layout in Front
 Adding Redux
 Addix Query Reducer and Action
 Adding Dark Mode
-Adding Search Filters
-
-
-
-
-
-
-
-
-
+Adding Search Filters Test
+Adding Search Filters Component
 
 2020-09-05 13:00:00 
-
+Adding Card Form in Front
+Adding API Endpoint to get Mentor rate
+Adjusting Microservice Mentors for getting the rate
+Connect Back and Front
 
 
 

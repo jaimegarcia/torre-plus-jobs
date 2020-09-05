@@ -1,3 +1,4 @@
+
 const Axios = require('axios');
 const https = require('https');
 
@@ -65,6 +66,7 @@ exports.postMentors = async (req, res) => {
 					weight: x.weight,
 					compensation:{
 						currency: x.compensations.freelancer.currency.slice(0,3),
+						symbol:x.compensations.freelancer.currency.slice(3,4),
 						amount:compesationAmount
 					}
 				}
@@ -98,7 +100,29 @@ exports.getMentor= async (req, res) => {
     if(response.data.person){
 
 			const results=response.data.person;
-			delete results["flags"]
+			console.log("results",results.opportunities)
+			const opportunities=response.data.opportunities;
+
+			const gigsOportunities=opportunities.filter(x=>x.interest==="gigs");
+			console.log(gigsOportunities)
+			const currencySymbol=gigsOportunities.filter(x=>x.field==="desirable-compensation-currency")[0].data;
+			console.log(currencySymbol)
+
+			let amount=gigsOportunities.filter(x=>x.field==="desirable-compensation-amount")[0].data;
+			console.log(amount)
+
+			let periodicity=gigsOportunities.filter(x=>x.field==="desirable-compensation-periodicity")[0].data;
+			console.log(periodicity)
+
+			if(periodicity==="monthly") amount=amount/MONTHLY_TO_HOURLY;
+			if(periodicity==="yearly") amount=amount/YEARLY_TO_HOURLY;
+			results.compensation= {
+				amount,
+				currency:currencySymbol.slice(0,3),
+				symbol:currencySymbol.slice(3,4),
+			}
+			delete results["flags"];
+
       return res.status(200).json({mentor:results})
 
     }else{
