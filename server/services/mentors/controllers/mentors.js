@@ -8,8 +8,8 @@ const axios = Axios.create({ httpsAgent,timeout:10000 });
 
 
 
-const YEARLY_TO_HOURLY=40*52;
-const MONTHLY_TO_HOURLY=40;
+const YEARLY_TO_HOURLY=40*52;//Weekly Hours * 52 Weeks
+const MONTHLY_TO_HOURLY=40*4;//Weekly Hours * 4 Weeks
 
 const mentorsQuery={
 	"and": [{
@@ -34,12 +34,13 @@ const mentorsQuery={
 	}]
 }
 /**
- * Get Mentors from Torre API
- * @param  {} req
- * @param  {} res
+ * Get Mentors List from Torre API based on MentorsQuery
+ * @param  {Number} req.query.offset Cursor to API
+ * @param  {Number} req.query.size Size of Pagination
  */
 exports.postMentors = async (req, res) => {
-  const {offset,size} = req.query;
+	const {offset,size} = req.query;
+	if(!offset || !size) return res.status(400).json({error:`You need to include a size and offset`});
 	const aggregate=true;
 	const endpoint="https://search.torre.co/people/_search/?";
   try{
@@ -64,7 +65,7 @@ exports.postMentors = async (req, res) => {
 					professionalHeadline:x.professionalHeadline,
 					picture:x.picture,
 					weight: x.weight,
-					compensation:{
+					compensation:{ //Separate Currency USD, Symbol $, and rounded amount 25.12
 						currency: x.compensations.freelancer.currency.slice(0,3),
 						symbol:x.compensations.freelancer.currency.slice(3,4),
 						amount:Math.round(compesationAmount*100)/100
@@ -83,40 +84,33 @@ exports.postMentors = async (req, res) => {
 
 
 /**
- * Get Mentors from Torre API
- * @param  {} req
- * @param  {} res
+ * Get Mentor BIO from Torre API
+ * @param  {String} req.params.username username of the Mentor
  */
 exports.getMentor= async (req, res) => {
 	const {username} = req.params;
 	const endpoint="https://torre.bio/api/bios/";
-  if(!username) return res.status(400).json({error:`You need to include a valid Mentor Username`})
-  console.log("endpoi")
+  if(!username) return res.status(400).json({error:`You need to include a valid Mentor Username`});
   try{
     const response=await axios.get(
       endpoint + `${username}`,
       {headers: {'Content-Type': 'application/json'}},
     )
     if(response.data.person){
-
+			//Separate Currency USD, Symbol $, and rounded amount 25.12. Format is different than list, so is necessary to filter opportunities
 			const results=response.data.person;
-			console.log("results",results.opportunities)
 			const opportunities=response.data.opportunities;
 
 			const gigsOportunities=opportunities.filter(x=>x.interest==="gigs");
-			console.log(gigsOportunities)
 			const currencySymbol=gigsOportunities.filter(x=>x.field==="desirable-compensation-currency")[0].data;
-			console.log(currencySymbol)
 
 			let amount=gigsOportunities.filter(x=>x.field==="desirable-compensation-amount")[0].data;
-			console.log(amount)
 
 			let periodicity=gigsOportunities.filter(x=>x.field==="desirable-compensation-periodicity")[0].data;
-			console.log(periodicity)
 
 			if(periodicity==="monthly") amount=amount/MONTHLY_TO_HOURLY;
 			if(periodicity==="yearly") amount=amount/YEARLY_TO_HOURLY;
-			results.compensation= {
+			results.compensation= { 
 				amount:Math.round(amount*100)/100,
 				currency:currencySymbol.slice(0,3),
 				symbol:currencySymbol.slice(3,4),

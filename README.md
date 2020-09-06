@@ -1,68 +1,84 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Torre Mentors
 
-## Available Scripts
+Torre Mentors allows people to get their dream jobs, by providing job searching and mentoring access
 
-In the project directory, you can run:
+This products focus on monetization. It considers two flows: 
 
-### `yarn start`
+1. Referral Aggregation: Provider give money by referral
+2. Mentoring Fee: Mentor is charged a comission for every bussines. Alternative the fee can be charged to the end users
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The user enters a query composed by Skills (Jobs with any of the skills) and Organizations  (Jobs from any of the orgs) 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+To improve UX in the Opportunities view, I am querien on sizes of 50, and showing 10 by 10. The new 50 are saved in Redux Store,
+so if the user goes back it doesn't need to query again the information. I'm also using Skeletons to improve Speed Perceptions.
 
-### `yarn test`
+Then, the user can check details about the Opportunity and see a shuffle of Mentors, which can help her/him to apply to the job.
+After selecting the mentor a Credit Card form is display with the rate in the mentor currency, allowing to pay for mentorship.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The database of users and payments remains on Stripe, I add metadata to match with the username of the mentor. 
 
-### `yarn build`
+The Server is composed by 3 microservices:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Opportunities: Provide list of opportunities and detail of opportunity in suscint way, ready for be used in the front. I'm executing all the mapping here reducing the amount of data proccessed in the front
+- Mentors: Provide list of mentors and detail of mentor in suscint way, ready for be use in the front. The service also transform Yearly and Monthly rates in hourly ones to provide the necessary rate for the mentoring
+- Payments: Provide connection with Stripe to run payments, it queries the Mentors Microservice to get the rate of the selected mentor
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Running in Local Environment
+For running this project in your local environment you can use yarn, npm or docker-compose. 
 
-### `yarn eject`
+The web runs by default in http://localhost:3000
+The server with all the microservices runs by default in http://localhost:8080
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Running with docker-compose
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+# Run with docker-compose
+docker-compose up
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Running with Yarn and/or NPM
 
-## Learn More
+```bash
+# Get the project
+git clone https://github.com/jaimegarcia/torre-plus-jobs
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Enter to the directory
+cd torre-plus-jobs
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Enter to the server
+cd server
+# Install NPM dependencies
+npm install
 
-### Code Splitting
+# Then simply start the server
+npm start
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+# Now open another terminal, and go back to the root of the project
+cd ..
 
-### Analyzing the Bundle Size
+# Enter to the web
+cd web
+# Install NPM dependencies
+yarn install
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+# Then simply start the server
+yarn start
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+For running the test, you can use yarn, npm o docker-compose
+```bash
+# Go to the server folder
+cd server
 
-### Deployment
+#  Run NPM Test 
+npm test
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+# Go to the wen folder
+cd web
+#  Run YARN Test
+yarn test
+```

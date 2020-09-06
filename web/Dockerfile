@@ -1,11 +1,16 @@
 FROM node:12-slim
 
 WORKDIR /web
+ENV NODE_ENV development
 
-COPY ./web/package.json /web
+COPY package.json /web
+
+RUN CI=true
 
 RUN npm install
 
-COPY ./web /web
+COPY . /web
 
-RUN npm run build
+CMD ["npm","start"]
+
+EXPOSE 3000

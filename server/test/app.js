@@ -5,12 +5,13 @@ const { expect } = require('chai')
 
 
 describe('Payments MicroService', () => {
-  it('should return client secret from Stripe', (done) => {
+  it('should return client secret and amount from Stripe', (done) => {
     request(app)
       .post('/services/payments/create-payment-intent')
+      .send({"mentor": "angie55"})
       .end(function(err, res) {   
         expect(res.statusCode).to.equal(200);
-        expect(res.body).to.have.all.keys('clientSecret');
+        expect(res.body).to.have.all.keys('clientSecret','amount','currency','symbol');
         done(); 
       });
   });
@@ -24,14 +25,14 @@ describe('Mentors MicroService', () => {
         expect(res.statusCode).to.equal(200);
         expect(res.body).to.have.all.keys('mentors');
         expect(res.body.mentors[0]).to.have.all.keys('id','username','name','professionalHeadline','picture','weight','compensation');
-        expect(res.body.mentors[0].compensation).to.have.all.keys('currency','amount');
+        expect(res.body.mentors[0].compensation).to.have.all.keys('currency','amount','symbol');
 
         done(); 
       });
   });
   it('should return mentor detail', (done) => {
     request(app)
-      .get('/services/mentors/jaimeandresgarciamejia')
+      .get('/services/mentors/angie55')
       .end(function(err, res) {   
         expect(res.statusCode).to.equal(200);
         expect(res.body).to.have.all.keys('mentor');
@@ -70,8 +71,8 @@ describe('Opportunities MicroService', () => {
       .send(opportunitiesQuery)
       .end(function(err, res) {   
         expect(res.statusCode).to.equal(200);
-        expect(res.body).to.have.all.keys('opportunities');
-        expect(res.body.opportunities[0]).to.have.all.keys('id','objective','type','organizations','locations','remote','deadline','status','skills');
+        expect(res.body).to.have.all.keys('opportunities','total');
+        expect(res.body.opportunities[0]).to.have.all.keys('id','objective','type','organizations','locations','remote','deadline','status','skills','compensation');
         done(); 
       });
   });

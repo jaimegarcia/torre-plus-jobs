@@ -43,7 +43,7 @@ export const setGlobalPage = page => ({
 
 // combine actions in an async thunk
 export function fetchOpportunities(expression={}, page = 1) {
-  const baseUrl='https://cors-anywhere.herokuapp.com/http://159.203.181.231/services/opportunities';
+  const baseUrl='http://localhost:8080/services/opportunities';
   const URL = `${baseUrl}?size=50&offset=${page===1?0:(page-1)*50}`;
   return async dispatch => {
     dispatch(getOpportunities());

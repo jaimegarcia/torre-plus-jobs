@@ -21,7 +21,7 @@ export const clearOpportunity = () => ({
 });
 
 export function fetchOpportunity(id) {
-  const baseUrl='https://cors-anywhere.herokuapp.com/http://159.203.181.231/services/opportunities';
+  const baseUrl='http://localhost:8080/services/opportunities';
   const URL = `${baseUrl}/${id}`;
 
   return async (dispatch) => {

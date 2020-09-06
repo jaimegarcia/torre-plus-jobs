@@ -19,7 +19,7 @@ export default function CheckoutForm(selectedMentor) {
   useEffect(() => {
     console.log("cardSelectedMentor",selectedMentor)
     // Create PaymentIntent as soon as the page loads
-    fetch("https://cors-anywhere.herokuapp.com/http://159.203.181.231/services/payments/create-payment-intent", {
+    fetch("http://localhost:8080/services/payments/create-payment-intent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

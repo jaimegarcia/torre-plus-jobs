@@ -2,19 +2,6 @@ version: '3.7'
 networks:
   torre_net:
 services:
-  torre_plus_web:
-    build:
-      context: ./web
-      dockerfile: Dockerfile
-    ports:
-     - "3000:3000"
-    environment:
-    - NODE_ENV=development
-    networks:
-    - torre_net
-    volumes:
-     - ./web:/web
-     - /web/node_modules
   torre_plus_server:
     build:
       context: ./server
@@ -26,4 +13,15 @@ services:
     volumes:
      - ./server:/server
      - /server/node_modules
-     
+  nginx:
+    container_name: nginx
+    image: nginx:1.16-alpine
+    restart: unless-stopped
+    ports:
+      - '80:80'
+    networks:
+      - torre_net
+    depends_on:
+      - torre_plus_server
+    volumes:
+      - ./nginx:/etc/nginx/conf.d

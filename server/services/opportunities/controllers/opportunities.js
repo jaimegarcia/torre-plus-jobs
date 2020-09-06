@@ -12,13 +12,16 @@ const formatPrice = (x) => {
 };
 
 /**
- * Get Mentors from Torre API
- * @param  {} req
- * @param  {} res
+ * Get Opportunities List from Torre API
+ * @param  {Number} req.query.offset Cursor to API
+ * @param  {Number} req.query.size Size of Pagination
+ * @param  {Object} req.body.query Query with Skills and Organizations to look on API
  */
 exports.postOpportunities = async (req, res) => {
 	const {offset,size} = req.query;
-	const {query} = req.body;
+  const {query} = req.body;
+  if(!offset || !size  || !query) return res.status(400).json({error:`You need to include a size, offset and query`});
+
 	const aggregate=true;
 	const endpoint="https://search.torre.co/opportunities/_search/?";
 	
@@ -36,7 +39,6 @@ exports.postOpportunities = async (req, res) => {
 			const opportunitiesData=results.map((x)=>{
 				const skills=x.skills.map((skill)=>`${skill.name} ${skill.experience.replace("potential-to-develop","0+").replace(/-plus-year(s\b|\b)/,"+")}`);
 
-        console.log("x.compensation",x.compensation)
       
         let compensation=x.compensation && x.compensation.data && x.compensation.data.minAmount>0 &&
         `${x.compensation.data.currency} ${formatPrice(x.compensation.data.minAmount)} ${x.compensation.data.maxAmount?" - "+formatPrice(x.compensation.data.maxAmount):""} /${x.compensation.data.periodicity}`
@@ -69,9 +71,8 @@ exports.postOpportunities = async (req, res) => {
 
 
 /**
- * Get Mentors from Torre API
- * @param  {} req
- * @param  {} res
+ * Get Opportunity Detail from Torre API
+ * @param  {String} req.params.id ID of the Opportunity
  */
 exports.getOpportunity = async (req, res) => {
 	const {id} = req.params;
@@ -91,7 +92,6 @@ exports.getOpportunity = async (req, res) => {
       const skills=results.strengths.map((skill)=>`${skill.name} ${skill.experience.replace("potential-to-develop","0+").replace(/-plus-year(s\b|\b)/,"+")}`);
       results.skills=skills;
       delete results["strengths"];
-      console.log("results.compensation",results.compensation)
       results.compensation=results.compensation && results.compensation.minAmount>0 &&
       `${results.compensation.currency} ${formatPrice(results.compensation.minAmount)} ${results.compensation.maxAmount?" - "+formatPrice(results.compensation.maxAmount):""} /${results.compensation.periodicity}`
       results.compensation=results.compensation || "To Be Defined";
