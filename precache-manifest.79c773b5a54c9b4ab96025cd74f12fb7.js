@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "40e8f021e441994f6a6b3ec81bf7b878",
+    "revision": "19ec8fbe3031857510e8120bc38e2a9a",
     "url": "/torre-plus-jobs/index.html"
   },
   {
-    "revision": "01b1a0e9724548857599",
+    "revision": "6853849f337d356b4388",
     "url": "/torre-plus-jobs/static/css/main.509a9304.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/torre-plus-jobs/static/js/2.ee3f6462.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "01b1a0e9724548857599",
-    "url": "/torre-plus-jobs/static/js/main.0ed9455e.chunk.js"
+    "revision": "6853849f337d356b4388",
+    "url": "/torre-plus-jobs/static/js/main.0a5dbf9e.chunk.js"
   },
   {
     "revision": "444c0e29a70c8b2ae262",
