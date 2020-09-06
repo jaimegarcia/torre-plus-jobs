@@ -9,6 +9,6 @@ describe('App', () => {
   it('Renders the connected app with initialState', () => {
     render(<App />)
 
-    expect(screen.getByText(/Torre Plus/i)).toBeInTheDocument()
+    expect(screen.getByText(/Torre Mentors/i)).toBeInTheDocument()
   })
 });

@@ -69,7 +69,7 @@ function Search({ dispatch }) {
         onChange={(chips) => handleSkillsChange(chips)}
         variant="outlined"
         color="primary"
-        placeholder="eg.React, Software Engineer"
+        placeholder="Search Skills/Roles: eg.React, Software Engineer"
         fullWidth={true}
       />
       <br/><br/><br/>
@@ -79,7 +79,7 @@ function Search({ dispatch }) {
         onChange={(chips) => handleOrganizationsChange(chips)}
         variant="outlined"
         color="primary"
-        placeholder="eg.Torre, Google"
+        placeholder="Search Organizations: eg.Torre, Google"
         fullWidth={true}
       />
   </React.Fragment>

@@ -37,6 +37,7 @@ function Mentors({ dispatch,loading, mentors,searching}) {
     {mentors.length>0 &&  
       <Carousel
         autoPlay={false}
+        navButtonsAlwaysVisible={true}
       >
         {mentors.map((mentor) =>  <Mentor mentor={mentor} key={mentor.id} />)}
     </Carousel>}

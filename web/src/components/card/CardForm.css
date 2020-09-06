@@ -7,7 +7,7 @@
   border-radius: 7px;
   padding: 40px;
 }
-#card-element input {
+#payment-form input {
   border-radius: 6px;
   margin-bottom: 6px;
   padding: 12px;
@@ -51,9 +51,9 @@
 }
 /* Buttons and links */
 #card-submit {
-  background: #5469d4;
+  background: #FF8F00!important;
   font-family: Arial, sans-serif;
-  color: #ffffff;
+  color: #FFF!important;
   border-radius: 0 0 4px 4px;
   border: 0;
   padding: 12px 16px;

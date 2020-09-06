@@ -10,7 +10,6 @@ export default function Routes() {
     <HashRouter basename='/'>
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/payment" component={PaymentPage} />
         <Route exact path="/opportunity/:id" component={OpportunityDetailPage} />
       </Switch>
     </HashRouter>

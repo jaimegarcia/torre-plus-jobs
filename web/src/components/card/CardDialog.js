@@ -14,7 +14,8 @@ const useStyles = makeStyles({
   dialogPaper: theme=>( {
     [theme.breakpoints.down(480)]: {
       margin: 0,
-      width:'100%'
+      width:'100%',
+      textAlign: 'center'
     },
   })
 });
@@ -50,9 +51,9 @@ function CardDialog({ dispatch,selectedMentor }) {
       onClose={handleModalClose}
       classes={{ paper: classes.dialogPaper }}   
     >
-    <DialogTitle id="payment-dialog-title"></DialogTitle>
-    <DialogContent style={{textAlign: 'center'}}>
-      {selectedMentor}
+    <DialogTitle id="payment-dialog-title" >Please Provide your Credit Card Info</DialogTitle>
+    <Typography variant="h4">For Testing Use 4242 4242 4242 4242 04/24 444</Typography>
+    <DialogContent>
       <Elements stripe={stripePromise}>
           <CardForm mentor={selectedMentor} />
         </Elements>

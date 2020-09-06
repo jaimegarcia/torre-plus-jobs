@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {Typography} from '@material-ui/core';
+import {Grid,Typography} from '@material-ui/core';
 
 import AppLayout from "../../layouts/AppLayout";
 import OpportunityDetail from "../../components/opportunitydetail/OportunityDetail";
@@ -13,8 +13,17 @@ function OpportunityDetailPage({ hasErrors,selectedMentor }) {
         <Typography variant="h2" >NO RESULTS</Typography> 
         : 
         <React.Fragment>
-          <OpportunityDetail />
-          <Mentors/>
+          <Grid container spacing={3}>
+            <Grid item xs={7}>
+              <OpportunityDetail />
+            </Grid>
+            <Grid item xs={5}>
+              <br/>
+              <Typography variant="h4" >Select a Mentor to help you with the Application to this JOB</Typography> 
+              <br/>
+              <Mentors/>
+            </Grid>
+          </Grid>
           {selectedMentor && <CardDialog />}
           </React.Fragment>
       }

@@ -27,7 +27,8 @@ exports.postCreatePaymentIntent = async (req, res) => {
 
   const paymentIntent = await stripe.paymentIntents.create({
     amount: compensation.amount*100, //TODO: Add exceptions to certain currencies
-    currency: compensation.currency
+    currency: compensation.currency,
+    metadata:{mentor}
   });
   res.send({
     clientSecret: paymentIntent.client_secret,

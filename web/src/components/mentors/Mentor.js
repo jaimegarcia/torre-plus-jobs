@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import moment from "moment";
-import { Link } from "react-router-dom";
+import { amber } from '@material-ui/core/colors';
+
 import { Button,Card,CardActions,CardContent,CardMedia,Typography,makeStyles } from '@material-ui/core';
 import CustomSkeleton from "../utils/CustomSkeleton";
 import {selectMentor} from "../../services/mentors/mentorsActions"
@@ -29,6 +29,12 @@ const useStyles = makeStyles({
   chipSkill:{
     marginRight:5,
     marginBottom:5
+  },
+  chooseButton:{
+    backgroundColor:amber[800],
+    "&:hover": {
+      backgroundColor:amber[900]
+    }
   }
 });
 
@@ -48,10 +54,10 @@ function Mentor({ dispatch,mentor }) {
   return (
   
 
-    <Card className={classes.root} variant="outlined">
+    <Card className={classes.root} variant="outlined" >
 
       <CardContent>
-        {mentor ?<img src={mentor.picture?mentor.picture:"https://www.ohioattorneygeneral.gov/getattachment/a251ac9a-eb9f-4741-a9eb-e2f87a2446b8/Duckworth.aspx"}></img>
+        {mentor ?<img width="100%" src={mentor.picture?mentor.picture:"https://www.ohioattorneygeneral.gov/getattachment/a251ac9a-eb9f-4741-a9eb-e2f87a2446b8/Duckworth.aspx"}></img>
         :<CustomSkeleton width={300} height={300}/>}
         <Typography variant="h5" component="h2">
           {mentor ? mentor.name : <CustomSkeleton width={300} />}
@@ -59,12 +65,16 @@ function Mentor({ dispatch,mentor }) {
         <Typography className={classes.pos} color="textSecondary" component="div" >
           {mentor? mentor.professionalHeadline: (<CustomSkeleton width={90} />)}
         </Typography>
+        <Typography className={classes.pos} variant="h4" color="textSecondary" component="div" >
+          {mentor? `Rate: ${compensation}`: (<CustomSkeleton width={90} />)}
+        </Typography>
         <Typography className={classes.pos} color="textSecondary" component="div" >
-          {mentor? compensation: (<CustomSkeleton width={90} />)}
+          {mentor? "Risk free: In case we failed to arrange the meeting, we will return 100% of your money": (<CustomSkeleton width={90} />)}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" variant="outlined" color="secondary" onClick={(mentor) => handleSelectMentor()} >Select Mentor</Button>
+        <Button size="large" variant="contained" color="primary" className={classes.chooseButton} onClick={() => handleSelectMentor()}>CHOOSE ME</Button>
+        <a href={`https://bio.torre.co/en/${mentor.username}`}  target="_blank" style={{ textDecoration: 'none' }}><Button size="large" >View Bio in Torre</Button></a>
       </CardActions>
     </Card>
   );

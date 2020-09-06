@@ -6,6 +6,9 @@ import moment from "moment";
 import CustomSkeleton from "../utils/CustomSkeleton";
 import { Box,Chip,Typography,makeStyles } from "@material-ui/core";
 
+const toFirstUpperCase=(str)=>{
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -30,7 +33,7 @@ function PositionDetails({ details }) {
     <Box>
       {details.map((x)=>(
         <React.Fragment>
-          <h2>{x.code}</h2>
+          <h2>{toFirstUpperCase(x.code)}</h2>
           <div>{x.content.split("\n").map((i,key) => {
             return <><div key={key}>{i}</div><br/></>;
         })}</div>

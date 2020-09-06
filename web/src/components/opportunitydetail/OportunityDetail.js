@@ -10,6 +10,9 @@ import CustomSkeleton from "../utils/CustomSkeleton";
 import { fetchOpportunity, clearOpportunity } from "../../services/opportunitydetail/opportunityDetailActions";
 import { Box,Chip,Typography,makeStyles } from "@material-ui/core";
 
+
+
+
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -40,21 +43,27 @@ function OpportunityDetail({ dispatch, opportunity }) {
 
   return (
     <Box>
-      {opportunity? <OrganizationsDetail details={opportunity.organizations}/> : (<CustomSkeleton width={90} />)}
 
+      {opportunity? <OrganizationsDetail details={opportunity.organizations}/> : (<CustomSkeleton width={90} />)}
+      <br/>
       <Typography variant="h5" component="h2">
         {opportunity ? opportunity.objective : <CustomSkeleton width={300} />}
-      </Typography>
-      <Typography className={classes.title} color="textSecondary" gutterBottom component="div">
-        {opportunity? date ?  ("Ends "+moment(date).startOf("hour").fromNow()) :"": (<CustomSkeleton width={90} />)}
       </Typography>
       <Typography variant="body2" component="div">
         {opportunity? opportunity.skills.length? opportunity.skills.map(x=>(<Chip key={x} className={classes.chipSkill} label={`${x}`} variant="outlined" />)): "": (<CustomSkeleton width={90} />)}
       </Typography>
+      <br/>
       <Typography variant="body2" component="div">
         {opportunity? `Compensation: ${opportunity.compensation}`: (<CustomSkeleton width={90} />)}
       </Typography>
-
+      <Typography className={classes.title} color="textSecondary" gutterBottom component="div">
+        {opportunity? date ?  ("Ends "+moment(date).startOf("hour").fromNow()) :"": (<CustomSkeleton width={90} />)}
+      </Typography>
+ 
+      <Typography variant="h3" component="div">
+        {opportunity? "Opportunity Description" : (<CustomSkeleton width={90} />)}      
+      </Typography>
+      
       {opportunity? <PositionDetails details={opportunity.details}/> : (<CustomSkeleton width={90} />)}
 
       <br/><br/><br/><br/>

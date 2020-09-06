@@ -11,6 +11,16 @@ export const CLEAR_MENTORS = 'CLEAR_MENTORS';
 export const SELECT_MENTOR = 'SELECT_MENTOR';
 export const CLEAR_SELECTED_MENTOR = 'CLEAR_SELECTED_MENTOR';
 // Create redux action creators that return an action
+
+const shuffleArray=(array) =>{
+  for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+  }
+  return array;
+}
 export const getMentors = () => ({
   type: GET_MENTORS,
 });
@@ -51,7 +61,7 @@ export const selectMentor = mentor => ({
 // combine actions in an async thunk
 export function fetchMentors() {
   const baseUrl='https://cors-anywhere.herokuapp.com/http://159.203.181.231/services/mentors';
-  const URL = `${baseUrl}?size=20&offset=0`;
+  const URL = `${baseUrl}?size=100&offset=0`;
   return async dispatch => {
     dispatch(getMentors());
 
@@ -67,7 +77,8 @@ export function fetchMentors() {
       });
 
       let data = await res.json();
-      let mentors=data.mentors;
+      let mentors=shuffleArray(data.mentors);
+      console.log("shumentors",JSON.stringify(mentors))
       dispatch(getMentorsSuccess({mentors}));
     } catch (error) {
       console.error(error);

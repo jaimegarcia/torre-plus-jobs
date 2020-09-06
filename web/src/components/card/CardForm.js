@@ -9,6 +9,8 @@ export default function CheckoutForm(selectedMentor) {
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState('');
   const [disabled, setDisabled] = useState(true);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [clientSecret, setClientSecret] = useState('');
   const [mentorFee, setMentorFee] = useState(null);
   const stripe = useStripe();
@@ -32,6 +34,7 @@ export default function CheckoutForm(selectedMentor) {
       });
   }, []);
   const cardStyle = {
+    hidePostalCode: true,
     style: {
       base: {
         color: "#32325d",
@@ -58,7 +61,11 @@ export default function CheckoutForm(selectedMentor) {
     setProcessing(true);
     const payload = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
-        card: elements.getElement(CardElement)
+        card: elements.getElement(CardElement),
+        billing_details: {
+          email,
+          name,
+        }
       }
     });
     if (payload.error) {
@@ -72,7 +79,26 @@ export default function CheckoutForm(selectedMentor) {
   };
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
-      <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
+      <input
+        id="name"
+        required
+        placeholder="Name on Card"
+        value={name}
+        onChange={(e) => {
+          setName(e.target.value);
+        }}
+      />
+      <input
+        id="email"
+        required
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => {
+          setEmail(e.target.value);
+        }}
+      />
+      <CardElement id="card-element" options={cardStyle} onChange={handleChange} /><br/>
       {mentorFee && <button
         disabled={processing || disabled || succeeded}
         id="card-submit"

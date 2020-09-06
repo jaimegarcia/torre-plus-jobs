@@ -26,16 +26,12 @@ function NavBar({ palletType,handleThemeChange }) {
 
     <AppBar position="static" data-testid="app-bar">
       <Toolbar>
-        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
         <Typography variant="h6" className={classes.title}>
-          Torre Plus
+          Torre Mentors
         </Typography>
         <IconButton aria-label="ligth dark mode" color="inherit" onClick={() => handleThemeChange()} data-testid="dark-mode-toggle">
             {palletType==="dark"?<Brightness7Icon />:<Brightness6Icon />}
           </IconButton>
-        <Button color="inherit">Login</Button>
       </Toolbar>
     </AppBar>
   );

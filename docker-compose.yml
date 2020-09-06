@@ -2,17 +2,6 @@ version: '3.7'
 networks:
   torre_net:
 services:
-  torre_plus_web:
-    build:
-      context: ./web
-      dockerfile: Dockerfile
-    ports:
-      - '3000:3000'
-    networks:
-      - torre_net
-    volumes:
-      - ./web:/web
-      - /web/node_modules
   torre_plus_server:
     build:
       context: ./server
@@ -34,7 +23,6 @@ services:
       - torre_net
     depends_on:
       - torre_plus_server
-      - torre_plus_web
     volumes:
       - ./nginx:/etc/nginx/conf.d
      

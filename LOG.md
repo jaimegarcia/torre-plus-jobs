@@ -56,3 +56,20 @@ Customization of the FrontEnd
 Adjusting data in the backend
 
 
+2020-09-05 17:00:00 
+Configuring NGINX as Reverse Proxy
+Setting account to deploy service
+Installing docker and launching
+
+
+2020-09-05 18:00:00 
+Setting FrontEnd in GithubPages
+Dinning
+
+2020-09-05 19:00:00 
+Adjusting Styling
+
+2020-09-05 20:00:00 
+Adjusting Styling
+Completing Payment Form
+Adding Metadata to Stripe
