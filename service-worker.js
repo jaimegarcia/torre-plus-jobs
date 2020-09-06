@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/torre-plus-jobs/precache-manifest.5cdb151da77126946e00acf38b6e49f0.js"
+  "/torre-plus-jobs/precache-manifest.05fd29f1e78833aa2b47789f293cf9df.js"
 );
 
 self.addEventListener('message', (event) => {

@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/torre-plus-jobs/static/css/main.79774eee.chunk.css",
-    "main.js": "/torre-plus-jobs/static/js/main.31c006bf.chunk.js",
-    "main.js.map": "/torre-plus-jobs/static/js/main.31c006bf.chunk.js.map",
+    "main.js": "/torre-plus-jobs/static/js/main.6633bd8a.chunk.js",
+    "main.js.map": "/torre-plus-jobs/static/js/main.6633bd8a.chunk.js.map",
     "runtime-main.js": "/torre-plus-jobs/static/js/runtime-main.0ae44648.js",
     "runtime-main.js.map": "/torre-plus-jobs/static/js/runtime-main.0ae44648.js.map",
     "static/js/2.701bfc46.chunk.js": "/torre-plus-jobs/static/js/2.701bfc46.chunk.js",
     "static/js/2.701bfc46.chunk.js.map": "/torre-plus-jobs/static/js/2.701bfc46.chunk.js.map",
     "index.html": "/torre-plus-jobs/index.html",
-    "precache-manifest.5cdb151da77126946e00acf38b6e49f0.js": "/torre-plus-jobs/precache-manifest.5cdb151da77126946e00acf38b6e49f0.js",
+    "precache-manifest.05fd29f1e78833aa2b47789f293cf9df.js": "/torre-plus-jobs/precache-manifest.05fd29f1e78833aa2b47789f293cf9df.js",
     "service-worker.js": "/torre-plus-jobs/service-worker.js",
     "static/css/main.79774eee.chunk.css.map": "/torre-plus-jobs/static/css/main.79774eee.chunk.css.map",
     "static/js/2.701bfc46.chunk.js.LICENSE.txt": "/torre-plus-jobs/static/js/2.701bfc46.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.0ae44648.js",
     "static/js/2.701bfc46.chunk.js",
     "static/css/main.79774eee.chunk.css",
-    "static/js/main.31c006bf.chunk.js"
+    "static/js/main.6633bd8a.chunk.js"
   ]
 }
