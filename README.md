@@ -1,6 +1,6 @@
 ## Torre Mentors
 
-[link to DEMO](https://jaimegarcia.github.io/torre-plus-jobs)
+DEMO available in this link: [Torre Mentors](https://jaimegarcia.github.io/torre-plus-jobs) 
 
 Torre Mentors allows people to get their dream jobs, by providing job searching and mentoring access
 
