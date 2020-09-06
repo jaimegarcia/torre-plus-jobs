@@ -85,3 +85,11 @@ Testing and Documentation
 2020-09-05 23:00:00 
 Adjusting Styling
 Testing and Documentation
+
+2020-09-05 23:00:00 
+Adjusting Styling
+Adding Logos
+Testing and Documentation
+
+2020-09-06 00:00:00 
+Final Adjustments to Readme

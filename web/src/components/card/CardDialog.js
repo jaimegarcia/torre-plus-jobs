@@ -61,6 +61,7 @@ function CardDialog({ dispatch,selectedMentor }) {
       <Elements stripe={stripePromise}>
           <CardForm mentor={selectedMentor} />
         </Elements>
+        <br/>
         <img src={stripelogo} alt="Stripe" />
     </DialogContent>
   </Dialog>
