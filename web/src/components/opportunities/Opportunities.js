@@ -53,7 +53,7 @@ function Opportunities({ dispatch,loading, opportunities,total,searching,globalP
 
   return (
     <Box>
-      <TablePagination
+      {total>0 && <TablePagination
         data-testid="table-pagination-up"
         component="div"
         count={total}
@@ -61,20 +61,20 @@ function Opportunities({ dispatch,loading, opportunities,total,searching,globalP
         onChangePage={handlePageChange}
         rowsPerPage={10}
         rowsPerPageOptions={[10]}
-      />
+      />}
       {loading
         ? new Array(10)
             .fill(null)
             .map((opportunity, idx) => <Opportunity opportunity={opportunity} key={idx} />)
         : opportunities.map((opportunity) => <Opportunity opportunity={opportunity} key={opportunity.id} />)}
-      <TablePagination
+      {total>0 &&<TablePagination
         component="div"
         count={total}
         page={page}
         onChangePage={handlePageChange}
         rowsPerPage={10}
         rowsPerPageOptions={[10]}
-      />
+      />}
     </Box>
   );
 }

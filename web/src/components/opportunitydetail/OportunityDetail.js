@@ -44,27 +44,27 @@ function OpportunityDetail({ dispatch, opportunity }) {
   return (
     <Box>
 
-      {opportunity? <OrganizationsDetail details={opportunity.organizations}/> : (<CustomSkeleton width={90} />)}
+      {opportunity? <OrganizationsDetail details={opportunity.organizations}/> : (<CustomSkeleton width={300} height={300} />)}
       <br/>
       <Typography variant="h5" component="h2">
-        {opportunity ? opportunity.objective : <CustomSkeleton width={300} />}
+        {opportunity ? opportunity.objective : <CustomSkeleton width={500} />}
       </Typography>
       <Typography variant="body2" component="div">
         {opportunity? opportunity.skills.length? opportunity.skills.map(x=>(<Chip key={x} className={classes.chipSkill} label={`${x}`} variant="outlined" />)): "": (<CustomSkeleton width={90} />)}
       </Typography>
       <br/>
       <Typography variant="body2" component="div">
-        {opportunity? `Compensation: ${opportunity.compensation}`: (<CustomSkeleton width={90} />)}
+        {opportunity? `Compensation: ${opportunity.compensation}`: (<CustomSkeleton width={500} />)}
       </Typography>
       <Typography className={classes.title} color="textSecondary" gutterBottom component="div">
-        {opportunity? date ?  ("Ends "+moment(date).startOf("hour").fromNow()) :"": (<CustomSkeleton width={90} />)}
+        {opportunity? date ?  ("Ends "+moment(date).startOf("hour").fromNow()) :"": (<CustomSkeleton width={500} />)}
       </Typography>
  
       <Typography variant="h3" component="div">
-        {opportunity? "Opportunity Description" : (<CustomSkeleton width={90} />)}      
+        {opportunity? "Opportunity Description" : (<CustomSkeleton width={500} />)}      
       </Typography>
       
-      {opportunity? <PositionDetails details={opportunity.details}/> : (<CustomSkeleton width={90} />)}
+      {opportunity? <PositionDetails details={opportunity.details}/> : (<CustomSkeleton width={500} height={800} />)}
 
       <br/><br/><br/><br/>
     </Box>

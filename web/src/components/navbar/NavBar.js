@@ -7,6 +7,8 @@ import Brightness6Icon from '@material-ui/icons/Brightness6';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import MenuIcon from '@material-ui/icons/Menu';
 
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -17,6 +19,13 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  noDecorations:{
+    color: "inherit",
+    textDecoration: "none!important",
+    "&:visited": {
+      textDecoration: "none!important",
+    }
+  }
 }));
 
 function NavBar({ palletType,handleThemeChange }) {
@@ -27,7 +36,7 @@ function NavBar({ palletType,handleThemeChange }) {
     <AppBar position="static" data-testid="app-bar">
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
-          Torre Mentors
+          <Link className={classes.noDecorations} to="/">Torre Mentors</Link>
         </Typography>
         <IconButton aria-label="ligth dark mode" color="inherit" onClick={() => handleThemeChange()} data-testid="dark-mode-toggle">
             {palletType==="dark"?<Brightness7Icon />:<Brightness6Icon />}

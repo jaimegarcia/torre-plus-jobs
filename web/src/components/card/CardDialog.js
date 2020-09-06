@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import { Dialog,DialogTitle,DialogContent,makeStyles,useTheme } from '@material-ui/core';
+import { Dialog,DialogTitle,DialogContent,Typography,makeStyles,useTheme } from '@material-ui/core';
 import CardForm from "../../components/card/CardForm";
 import {clearSelectedMentor} from "../../services/mentors/mentorsActions"
 
@@ -15,8 +15,12 @@ const useStyles = makeStyles({
     [theme.breakpoints.down(480)]: {
       margin: 0,
       width:'100%',
-      textAlign: 'center'
+      textAlign: 'center',
+      paddingTop:0
     },
+    centered:{
+      textAlign: 'center'
+    }
   })
 });
 
@@ -48,12 +52,12 @@ function CardDialog({ dispatch,selectedMentor }) {
     <Dialog
       aria-labelledby="payment-dialog"
       open={openModal}
+      fullWidth={'md'}
       onClose={handleModalClose}
       classes={{ paper: classes.dialogPaper }}   
     >
-    <DialogTitle id="payment-dialog-title" >Please Provide your Credit Card Info</DialogTitle>
-    <Typography variant="h4">For Testing Use 4242 4242 4242 4242 04/24 444</Typography>
-    <DialogContent>
+
+    <DialogContent  style={{textAlign: 'center'}}>
       <Elements stripe={stripePromise}>
           <CardForm mentor={selectedMentor} />
         </Elements>

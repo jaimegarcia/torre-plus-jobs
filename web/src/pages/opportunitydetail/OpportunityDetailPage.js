@@ -19,7 +19,7 @@ function OpportunityDetailPage({ hasErrors,selectedMentor }) {
             </Grid>
             <Grid item xs={5}>
               <br/>
-              <Typography variant="h4" >Select a Mentor to help you with the Application to this JOB</Typography> 
+              <Typography variant="h4" >Select a Mentor to help you with the Application for this JOB</Typography> 
               <br/>
               <Mentors/>
             </Grid>

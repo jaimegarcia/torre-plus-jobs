@@ -4,6 +4,7 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 export default function CheckoutForm(selectedMentor) {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
@@ -77,8 +78,19 @@ export default function CheckoutForm(selectedMentor) {
       setSucceeded(true);
     }
   };
-  return (
+  return succeeded ?(
+    <div className={succeeded ? "result-message" : "result-message hidden"}>
+      <h3>Payment succeeded. Your mentor will contact you soon.</h3>
+   
+      <CheckCircleIcon style={{ fontSize: 150,color: "#4caf50" }}/>
+      <br/>
+      <p>Risk free: In case we failed to arrange the meeting, we will return 100% of your money</p>
+    </div>
+    
+  ):(
     <form id="payment-form" onSubmit={handleSubmit}>
+      <h2 style={{textAlign: 'center'}} >Please Provide your Credit Card Info</h2>
+      <p style={{textAlign: 'center'}}>For Testing Use 4242 4242 4242 4242 04/24 444</p>
       <input
         id="name"
         required
@@ -116,17 +128,8 @@ export default function CheckoutForm(selectedMentor) {
         <div className="card-error" role="alert">
           {error}
         </div>
+      
       )}
-      {/* Show a success message upon completion */}
-      <p className={succeeded ? "result-message" : "result-message hidden"}>
-        Payment succeeded, see the result in your
-        <a
-          href={`https://dashboard.stripe.com/test/payments`}
-        >
-          {" "}
-          Stripe dashboard.
-        </a> Refresh the page to pay again.
-      </p>
     </form>
-  );
+  )
 }
