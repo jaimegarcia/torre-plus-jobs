@@ -5,7 +5,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { Dialog,DialogTitle,DialogContent,Typography,makeStyles,useTheme } from '@material-ui/core';
 import CardForm from "../../components/card/CardForm";
 import {clearSelectedMentor} from "../../services/mentors/mentorsActions"
-
+import stripelogo from './stripelogo.png'
 import "./CardForm.css";
 
 const stripePromise = loadStripe("pk_test_51HNHGPEnkm8R0LuQq6ElEuxVbDmcuFHIEQlMsWolC1NdEbxEoaH91oWtFd8T31Wine6rtIwAZJ4lgylshF2bcD7D00ZmAFUhPS");
@@ -61,7 +61,7 @@ function CardDialog({ dispatch,selectedMentor }) {
       <Elements stripe={stripePromise}>
           <CardForm mentor={selectedMentor} />
         </Elements>
-  
+        <img src={stripelogo} alt="Stripe" />
     </DialogContent>
   </Dialog>
   );
