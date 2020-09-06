@@ -3,7 +3,6 @@ import { HashRouter, Switch, Route } from "react-router-dom";
 
 import HomePage from "./pages/home/HomePage";
 import OpportunityDetailPage from "./pages/opportunitydetail/OpportunityDetailPage";
-import PaymentPage from "./pages/payment/PaymentPage";
 
 export default function Routes() {
   return (
