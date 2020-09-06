@@ -50,7 +50,7 @@ export const selectMentor = mentor => ({
 });
 // combine actions in an async thunk
 export function fetchMentors() {
-  const baseUrl='http://localhost:8080/services/mentors';
+  const baseUrl='https://cors-anywhere.herokuapp.com/http://159.203.181.231/services/mentors';
   const URL = `${baseUrl}?size=20&offset=0`;
   return async dispatch => {
     dispatch(getMentors());

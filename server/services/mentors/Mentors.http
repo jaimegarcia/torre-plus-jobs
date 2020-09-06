@@ -1,9 +1,11 @@
 
 @host =localhost:8080
+
+@externalhost=159.203.181.231
 @contentType = application/json
 @username = angie55
 ### List Available Mentors
-POST http://{{host}}/services/mentors?offset=0&size=20
+POST http://{{externalhost}}/services/mentors?offset=0&size=20
 Content-Type: {{contentType}}
 
 ### Get Mentor Detail

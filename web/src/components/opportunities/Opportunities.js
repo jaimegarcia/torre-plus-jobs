@@ -76,7 +76,6 @@ function Opportunities({ dispatch,loading, opportunities,total,searching,globalP
         rowsPerPage={10}
         rowsPerPageOptions={[10]}
       />
-      <Button onClick={() => setPage(4)}>Reset Pages</Button>
     </Box>
   );
 }
