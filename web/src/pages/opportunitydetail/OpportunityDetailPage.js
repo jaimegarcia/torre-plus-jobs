@@ -14,10 +14,10 @@ function OpportunityDetailPage({ hasErrors,selectedMentor }) {
         : 
         <React.Fragment>
           <Grid container spacing={3}>
-            <Grid item xs={7}>
+            <Grid item xs={12} sm={7}>
               <OpportunityDetail />
             </Grid>
-            <Grid item xs={5}>
+            <Grid item xs={12} sm={5}>
               <br/>
               <Typography variant="h4" >Select a Mentor to help you with the Application for this JOB</Typography> 
               <br/>

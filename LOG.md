@@ -73,3 +73,7 @@ Adjusting Styling
 Adjusting Styling
 Completing Payment Form
 Adding Metadata to Stripe
+
+2020-09-05 21:00:00 
+Adjusting Styling
+Testing and Fixing
