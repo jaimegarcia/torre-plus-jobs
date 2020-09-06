@@ -30,13 +30,17 @@ The database of users and payments remains on Stripe, I add metadata to match wi
 
 ![alt text](https://github.com/jaimegarcia/torre-plus-jobs/blob/master/images/stripe.png?raw=true)
 
+The Front End was built using React, Redux and Material UI. For Testing I use React Testing Library with Jest.
 
-The Server is composed by 3 microservices:
+The Server is composed by 3 microservices using Node and Express.:
 
 - Opportunities: Provide list of opportunities and detail of opportunity in suscint way, ready for be used in the front. I'm executing all the mapping here reducing the amount of data proccessed in the front
 - Mentors: Provide list of mentors and detail of mentor in suscint way, ready for be use in the front. The service also transform Yearly and Monthly rates in hourly ones to provide the necessary rate for the mentoring
 - Payments: Provide connection with Stripe to run payments, it queries the Mentors Microservice to get the rate of the selected mentor. With this approach we protect from the user to change the value of the rate
 
+The microservices are located together but are easy to separate thanks to its struture.
+
+For Testing in the backend I use Supertest with Chai
 
 ### Running in Local Environment
 For running this project in your local environment you can use yarn, npm or docker-compose. 
