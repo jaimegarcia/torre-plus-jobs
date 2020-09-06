@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { paymentsAPI } from "../../config/config";
+
 import {
   CardElement,
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+
+/** Create Form with Card, Name and Email according to Mentor Rate
+ * @param  {String} selectedMentor Mentor Selected for Payment
+ */
 export default function CheckoutForm(selectedMentor) {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
@@ -17,9 +23,8 @@ export default function CheckoutForm(selectedMentor) {
   const stripe = useStripe();
   const elements = useElements();
   useEffect(() => {
-    console.log("cardSelectedMentor",selectedMentor)
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:8080/services/payments/create-payment-intent", {
+    fetch(paymentsAPI+"/create-payment-intent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

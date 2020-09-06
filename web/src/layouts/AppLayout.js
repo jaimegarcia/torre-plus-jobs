@@ -7,7 +7,9 @@ import NavBar from "../components/navbar/NavBar";
 import {CssBaseline,Container} from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
 
-
+/** Main layout of the App, includes dark mode toggle, NavBar and Container
+ * @param  {React.Component} {children} React Componentes inside of the layour
+ */
 function AppLayout({ children }) {
   const [themeState, setThemeState] = useState(false);
   const palletType = themeState ? "light" : "dark";

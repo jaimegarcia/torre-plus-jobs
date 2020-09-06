@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { amber } from '@material-ui/core/colors';
 
-import { Button,Card,CardActions,CardContent,CardMedia,Typography,makeStyles } from '@material-ui/core';
+import { Button,Card,CardActions,CardContent,Typography,makeStyles } from '@material-ui/core';
 import CustomSkeleton from "../utils/CustomSkeleton";
 import {selectMentor} from "../../services/mentors/mentorsActions"
 
@@ -38,18 +38,19 @@ const useStyles = makeStyles({
   }
 });
 
+/** Mentor Component Card with name, headline and compensation
+ * @param  {function} dispatch Redux Dispatch
+ * @param  {Object} mentor Mentor Detail
+ */
 function Mentor({ dispatch,mentor }) {
 
   const handleSelectMentor = () => {
-    console.log("selectedmentor",mentor)
     dispatch(selectMentor(mentor.username));
   };
   const classes = useStyles();
-  console.log("mentor",mentor)
   
   let compensation=mentor && mentor.compensation  && `${mentor.compensation.currency} ${mentor.compensation.symbol} ${mentor.compensation.amount}`;
 
-  //console.log("individualmentor",mentor,date)
   //      to={mentor ? `/positions/${mentor.id}` : "#"}
   return (
   

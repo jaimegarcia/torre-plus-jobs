@@ -6,6 +6,11 @@ import AppLayout from "../../layouts/AppLayout";
 import OpportunityDetail from "../../components/opportunitydetail/OportunityDetail";
 import Mentors from "../../components/mentors/Mentors";
 import CardDialog from "../../components/card/CardDialog";
+
+/** Opportunity Detail Page with Description and Mentors Available
+ * @param  {boolean} hasErrors Show if there is any error getting the opportunity detail
+ * @param  {String} selectedMentor Selected Mentor for helping the user
+ */
 function OpportunityDetailPage({ hasErrors,selectedMentor }) {
   return (
     <AppLayout>

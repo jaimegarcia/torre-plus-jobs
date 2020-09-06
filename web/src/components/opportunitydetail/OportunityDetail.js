@@ -30,7 +30,10 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
 });
-
+/** Opportunity Detail showing full description of the oportunity 
+ * @param  {function} dispatch Redux Dispatch
+ * @param  {Object} opportunity Oportunity Object
+ */
 function OpportunityDetail({ dispatch, opportunity }) {
   const { id } = useParams();
   const classes = useStyles();
@@ -38,7 +41,6 @@ function OpportunityDetail({ dispatch, opportunity }) {
     dispatch(clearOpportunity());
     dispatch(fetchOpportunity(id));
   }, [id, dispatch]);
-  console.log("oportunity",opportunity)
   let date = opportunity && +new Date(opportunity.deadline);
 
   return (
@@ -72,8 +74,7 @@ function OpportunityDetail({ dispatch, opportunity }) {
 }
 
 const mapStateToProps = (state) => ({
-  opportunity: state.opportunityDetail.opportunity,
-  hasErrors: state.opportunityDetail.hasErrors
+  opportunity: state.opportunityDetail.opportunity
 });
 
 export default connect(mapStateToProps)(OpportunityDetail);

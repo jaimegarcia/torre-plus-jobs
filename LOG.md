@@ -77,3 +77,11 @@ Adding Metadata to Stripe
 2020-09-05 21:00:00 
 Adjusting Styling
 Testing and Fixing
+
+2020-09-05 22:00:00 
+Adjusting Styling
+Testing and Documentation
+
+2020-09-05 23:00:00 
+Adjusting Styling
+Testing and Documentation

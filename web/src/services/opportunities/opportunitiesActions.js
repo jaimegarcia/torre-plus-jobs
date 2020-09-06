@@ -1,4 +1,7 @@
+import { opportunitiesAPI } from "../../config/config";
 
+
+const TOTAL_SIZE=10*5; //5 Pages of 10 Results
 
 
 // Action Types
@@ -8,6 +11,9 @@ export const GET_OPPORTUNITIES_FAILURE = 'GET_OPPORTUNITIES_FAILURE';
 export const GET_CURRENT_OPPORTUNITIES = 'GET_CURRENT_OPPORTUNITIES';
 export const SET_GLOBAL_PAGE = 'SET_GLOBAL_PAGE';
 export const CLEAR_OPPORTUNITIES = 'CLEAR_OPPORTUNITIES';
+
+
+
 
 // Create redux action creators that return an action
 export const getOpportunities = () => ({
@@ -41,10 +47,13 @@ export const setGlobalPage = page => ({
   payload: page,
 });
 
-// combine actions in an async thunk
+
+/** Get List of Opportunities from Backend based on expression and offset
+ * @param  {Object} expression Search Expression
+ * @param  {Number} page  Page for calculate the offset, each Page 10 results
+ */
 export function fetchOpportunities(expression={}, page = 1) {
-  const baseUrl='http://localhost:8080/services/opportunities';
-  const URL = `${baseUrl}?size=50&offset=${page===1?0:(page-1)*50}`;
+  const URL = `${opportunitiesAPI}?size=${TOTAL_SIZE}&offset=${page===1?0:(page-1)*TOTAL_SIZE}`;
   return async dispatch => {
     dispatch(getOpportunities());
 

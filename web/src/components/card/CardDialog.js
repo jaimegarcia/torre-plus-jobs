@@ -23,7 +23,10 @@ const useStyles = makeStyles({
     }
   })
 });
-
+/**
+ * @param  {function} dispatch Redux Dispatch
+ * @param  {String} selectedMentor Selected Mentor for helping the user
+ */
 function CardDialog({ dispatch,selectedMentor }) {
 
   const [openModal, setOpenModal] = React.useState(false);
@@ -31,7 +34,6 @@ function CardDialog({ dispatch,selectedMentor }) {
     setOpenModal(true);
   };
   const handleModalClose = () => {
-    console.log("closing modal")
     dispatch(clearSelectedMentor())
     setOpenModal(false);
     
@@ -44,8 +46,6 @@ function CardDialog({ dispatch,selectedMentor }) {
 
   const theme = useTheme();
   const classes = useStyles(theme);
-  //console.log("individualmentor",mentor,date)
-  //      to={mentor ? `/positions/${mentor.id}` : "#"}
   return (
 
 

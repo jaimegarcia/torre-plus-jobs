@@ -1,3 +1,4 @@
+import { mentorsAPI } from "../../config/config";
 
 
 
@@ -58,10 +59,13 @@ export const selectMentor = mentor => ({
   type: SELECT_MENTOR,
   payload: mentor,
 });
-// combine actions in an async thunk
+
+/** Get List of Mentors from Backend based o
+ * @param  {Object} expression Search Expression
+ * @param  {Number} page  Page for calculate the offset, each Page 10 results
+ */
 export function fetchMentors() {
-  const baseUrl='http://localhost:8080/services/mentors';
-  const URL = `${baseUrl}?size=100&offset=0`;
+  const URL = `${mentorsAPI}?size=100&offset=0`;
   return async dispatch => {
     dispatch(getMentors());
 
@@ -78,7 +82,6 @@ export function fetchMentors() {
 
       let data = await res.json();
       let mentors=shuffleArray(data.mentors);
-      console.log("shumentors",JSON.stringify(mentors))
       dispatch(getMentorsSuccess({mentors}));
     } catch (error) {
       console.error(error);

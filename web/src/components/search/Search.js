@@ -8,12 +8,9 @@ import { clearOpportunities,setGlobalPage } from "../../services/opportunities/o
 export const generateFullExpresion=(...expressions)=>{
   let fullExpression={"and":[]};
   for(const expression of expressions){
-    //console.log("expr",expression)
     if(expression["or"].length>0)fullExpression["and"].push(expression);
   }
-  //if(orgsExpression["or"].length) fullExpression["and"].push(orgsExpression);
-  //if(skillsExpression["or"].length) fullExpression["and"].push(skillsExpression);
-  //console.log("fullExpression",JSON.stringify(fullExpression))
+
   return fullExpression;
 }
 export const generatePartExpression=(chips,type)=>{
@@ -28,11 +25,10 @@ export const generatePartExpression=(chips,type)=>{
       newExpression["or"].push({"organization":{"term":chip}})
     }
   }
-  console.log("newExpression",newExpression)
   return newExpression;
   
 }
-/**
+/** Generate Expressions by mergings and with ors (Skills and Organizations)
  * @param  {} {dispatch} Redux dispatcher
  */
 function Search({ dispatch }) {

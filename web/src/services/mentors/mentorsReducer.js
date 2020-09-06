@@ -17,13 +17,11 @@ export default function mentorsReducer(state = initialState, action) {
       return { ...state, loading: true };
     case actions.GET_MENTORS_SUCCESS:
       let mentors = [...state.mentors];
-      //console.log("mentorspayload",action.payload.results)
       mentors.push(action.payload.mentors);
       return { ...state, loading: false, hasErrors: false, mentors,total:action.payload.total };
     case actions.GET_MENTORS_FAILURE:
       return { ...state, loading: false, hasErrors: true };
     case actions.GET_CURRENT_MENTORS:
-      console.log("sate.mentors",state.mentors)
       return {
         ...state,
         current:

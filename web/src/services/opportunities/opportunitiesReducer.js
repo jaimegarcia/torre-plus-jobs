@@ -17,13 +17,11 @@ export default function opportunitiesReducer(state = initialState, action) {
       return { ...state, loading: true };
     case actions.GET_OPPORTUNITIES_SUCCESS:
       let opportunities = [...state.opportunities];
-      //console.log("opportunitiespayload",action.payload.results)
       opportunities.push(action.payload.opportunities);
       return { ...state, loading: false, hasErrors: false, opportunities,total:action.payload.total };
     case actions.GET_OPPORTUNITIES_FAILURE:
       return { ...state, loading: false, hasErrors: true };
     case actions.GET_CURRENT_OPPORTUNITIES:
-      console.log("sate.opportunities",state.opportunities)
       return {
         ...state,
         current:

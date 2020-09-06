@@ -1,41 +1,23 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { connect } from "react-redux";
-import moment from "moment";
+import React from "react";
 
-import CustomSkeleton from "../utils/CustomSkeleton";
-import { Box,Chip,Typography,makeStyles } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 
 const toFirstUpperCase=(str)=>{
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
-const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-    marginBottom:10
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
 
+/** Posistion Details Component
+ * @param  {Object} details Paragraphs with details of Opportunity Position
+ */
 function PositionDetails({ details }) {
 
   return (
     <Box>
-      {details.map((x)=>(
-        <React.Fragment>
-          <h2>{toFirstUpperCase(x.code)}</h2>
-          <div>{x.content.split("\n").map((i,key) => {
-            return <><div key={key}>{i}</div><br/></>;
+      {details.map((x,i)=>(
+        <React.Fragment key={`${x.code}-${i}`}>
+          <h2 key={`${x.code}-${i}-h2`}>{toFirstUpperCase(x.code)}</h2>
+          <div key={`${x.code}-${i}-div`}>{x.content.split("\n").map((value,j) => {
+            return <React.Fragment key={`${x.code}-${i}-${j}`}><div >{value}</div><br/></React.Fragment>;
         })}</div>
         </React.Fragment>
       ))}

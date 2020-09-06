@@ -1,3 +1,5 @@
+import { opportunitiesAPI } from "../../config/config";
+
 export const GET_OPPORTUNITY = "GET_OPPORTUNITY";
 export const GET_OPPORTUNITY_SUCCESS = "GET_OPPORTUNITY_SUCCESS";
 export const GET_OPPORTUNITY_FAILURE = "GET_OPPORTUNITY_FAILURE";
@@ -20,9 +22,11 @@ export const clearOpportunity = () => ({
   type: CLEAR_OPPORTUNITY,
 });
 
+/** Get data of opportunity detail from Backend
+ * @param  {} id ID of Opportunity
+ */
 export function fetchOpportunity(id) {
-  const baseUrl='http://localhost:8080/services/opportunities';
-  const URL = `${baseUrl}/${id}`;
+  const URL = `${opportunitiesAPI}/${id}`;
 
   return async (dispatch) => {
     dispatch(getOpportunity());
@@ -34,7 +38,6 @@ export function fetchOpportunity(id) {
         },
       });
       const data = await res.json();
-      console.log("data",data.opportunity)
       dispatch(getOpportunitySuccess(data.opportunity));
     } catch (error) {
       console.error(error);

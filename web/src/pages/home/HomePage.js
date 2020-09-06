@@ -10,8 +10,11 @@ import AppLayout from "../../layouts/AppLayout";
 
 const steps=['Search for your dream job', "Choose one of Torre's Associated Mentors to help you", 'Pay the rate and we will organize the meeting'];
 
-function HomePage({ hasErrors,dispatch }) {
-  console.log("hasErrors",hasErrors)
+
+/** Home Page with Search and Opportunities List
+ * @param  {boolean} hasErrors Show if there is any error getting opportunities
+ */
+function HomePage({ hasErrors }) {
   return (
     <AppLayout>
       <Typography variant="h2">Ready for getting your dream Job</Typography>

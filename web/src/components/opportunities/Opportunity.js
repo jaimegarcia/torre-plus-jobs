@@ -37,19 +37,18 @@ const useStyles = makeStyles({
     }
   }
 });
-
+/** Opportunity Card Component showing objective, organizations, skills, deadline, type, compensation and locations 
+ * @param  {Object} opportunity Oportunity Object
+ */
 function Opportunity({ opportunity }) {
 
   const classes = useStyles();
   let date = opportunity && +new Date(opportunity.deadline);
-  console.log("oportunity",opportunity)
   
 
-  //console.log("individualopportunity",opportunity,date)
-  //      to={opportunity ? `/positions/${opportunity.id}` : "#"}
   return (
 
-    <Link target="_blank" to={opportunity?`/opportunity/${opportunity.id}`:'/'} style={{ textDecoration: 'none' }}>
+    <a target="_blank" href={opportunity?`#/opportunity/${opportunity.id}`:'/'} style={{ textDecoration: 'none' }}>
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Typography variant="h5" component="h2">
@@ -77,7 +76,7 @@ function Opportunity({ opportunity }) {
       {opportunity? <Button size="small" variant="contained" className={classes.applyButton} color="primary">View Opportunity</Button>: <CustomSkeleton width={60} />}
       </CardActions>
     </Card>
-    </Link>
+    </a>
   );
 }
 

@@ -14,7 +14,6 @@ describe('Search', () => {
   it('should generate and expression from skills', () => {
 
     const fullExpression=generateFullExpresion(generatePartExpression(skillChips,"skill/role"),{"or":[]});
-    console.log("partExpression",fullExpression)
 
     expect(fullExpression).toEqual({"and":[{"or":[{"skill/role":{"text":"React","experience":"potential-to-develop"}},{"skill/role":{"text":"Vue","experience":"potential-to-develop"}},{"skill/role":{"text":"Javascript","experience":"potential-to-develop"}}]}]})
 

@@ -4,7 +4,6 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer,{initialState as reducerInitialState} from './services'
 
-console.log("typeof",typeof reducer)
 function render(
   ui,
   {
